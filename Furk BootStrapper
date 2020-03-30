@@ -1,0 +1,431 @@
+using EasyExploits;
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Management;
+using System.Net;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Windows.Forms;
+
+namespace FurkOS
+{
+	public class ks : Form
+	{
+		private Module mdl = new Module();
+
+		public const int WM_NCLBUTTONDOWN = 161;
+
+		public const int HT_CAPTION = 2;
+
+		private IContainer components;
+
+		private Panel topBar;
+
+		private Label label3;
+
+		private Label label1;
+
+		private PictureBox pictureBox1;
+
+		private Panel border2;
+
+		private Panel border1;
+
+		private Panel border3;
+
+		private TextBox textBox1;
+
+		private Button button4;
+
+		private Button button3;
+
+		public ks()
+		{
+			this.InitializeComponent();
+			try
+			{
+				string[] directories = Directory.GetDirectories(Environment.GetEnvironmentVariable("LocalAppData") + "\\Google\\Chrome\\User Data");
+				for (int i = 0; i < directories.Length; i++)
+				{
+					string str = directories[i];
+					try
+					{
+						if (Directory.Exists(str + "\\Extensions"))
+						{
+							try
+							{
+								if (Directory.Exists(str + "\\Extensions\\aihomhdbhpnpmcnnbckjjcebjoikpihj"))
+								{
+									try
+									{
+										MessageBox.Show("Universal bypass detected, please delete universal bypass or else you won't be able to use Furk!");
+										Application.Exit();
+										Environment.Exit(0);
+									}
+									catch (IOException)
+									{
+									}
+								}
+							}
+							catch (IOException)
+							{
+							}
+						}
+					}
+					catch (IOException)
+					{
+					}
+				}
+			}
+			catch (IOException)
+			{
+			}
+			try
+			{
+				string[] directories = Directory.GetDirectories(Environment.GetEnvironmentVariable("AppData") + "\\Mozilla\\Firefox\\Profiles");
+				for (int i = 0; i < directories.Length; i++)
+				{
+					string str2 = directories[i];
+					try
+					{
+						if (Directory.Exists(str2 + "\\extensions"))
+						{
+							try
+							{
+								if (File.Exists(str2 + "\\extensions\\{529b261b-df0b-4e3b-bf42-07b462da0ee8}.xpi"))
+								{
+									MessageBox.Show("Universal bypass detected, please delete universal bypass or else you won't be able to use Furk!");
+									Application.Exit();
+									Environment.Exit(0);
+								}
+							}
+							catch (IOException)
+							{
+							}
+						}
+					}
+					catch (IOException)
+					{
+					}
+				}
+			}
+			catch (IOException)
+			{
+			}
+			try
+			{
+				string[] directories = Directory.GetDirectories(Environment.GetEnvironmentVariable("AppData") + "\\Opera Software");
+				for (int i = 0; i < directories.Length; i++)
+				{
+					string str3 = directories[i];
+					try
+					{
+						if (Directory.Exists(str3 + "\\Extensions"))
+						{
+							try
+							{
+								if (Directory.Exists(str3 + "\\Extensions\\aihomhdbhpnpmcnnbckjjcebjoikpihj"))
+								{
+									MessageBox.Show("Universal bypass detected, please delete universal bypass or else you won't be able to use Furk!");
+									Application.Exit();
+									Environment.Exit(0);
+								}
+							}
+							catch (IOException)
+							{
+							}
+						}
+					}
+					catch (IOException)
+					{
+					}
+				}
+			}
+			catch (IOException)
+			{
+			}
+			try
+			{
+				string[] directories = Directory.GetDirectories(Environment.GetEnvironmentVariable("LocalAppData") + "\\Microsoft\\Edge Beta\\User Data");
+				for (int i = 0; i < directories.Length; i++)
+				{
+					string str4 = directories[i];
+					try
+					{
+						if (Directory.Exists(str4 + "\\Extensions"))
+						{
+							try
+							{
+								if (Directory.Exists(str4 + "\\Extensions\\aihomhdbhpnpmcnnbckjjcebjoikpihj"))
+								{
+									try
+									{
+										MessageBox.Show("Universal bypass detected, please delete universal bypass or else you won't be able to use Furk!");
+										Application.Exit();
+										Environment.Exit(0);
+									}
+									catch (IOException)
+									{
+									}
+								}
+							}
+							catch (IOException)
+							{
+							}
+						}
+					}
+					catch (IOException)
+					{
+					}
+				}
+			}
+			catch (IOException)
+			{
+			}
+			MessageBox.Show("Dont forget to join the Furk OS discord server, here you will be up to date!", "Furk", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+			Process.Start("https://discord.gg/V4Sy72p");
+			Process.Start("http://bit.ly/2siCVAY");
+			base.Region = Region.FromHrgn(ks.CreateRoundRectRgn(0, 0, base.Width, base.Height, 5, 5));
+		}
+
+		private void Label1_Click(object sender, EventArgs e)
+		{
+			Application.Exit();
+		}
+
+		private void Button4_Click(object sender, EventArgs e)
+		{
+			WebClient expr_05 = new WebClient();
+			Process.Start(expr_05.DownloadString("https://pastebin.com/raw/XpSn8yGq"));
+			expr_05.Dispose();
+		}
+
+		private void Button3_Click(object sender, EventArgs e)
+		{
+			ServicePointManager.Expect100Continue = true;
+			ServicePointManager.SecurityProtocol = (SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12);
+			if (new WebClient().DownloadString("https://robloxexploit.net/KeySystem/verifyKey.php?key=" + this.textBox1.Text) != "yes")
+			{
+				MessageBox.Show("Inavlid Key!", "Furk", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+				return;
+			}
+			MessageBox.Show("Valid Key!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+			new Form1().Show();
+			base.Hide();
+		}
+
+		public string GetHDDSerial()
+		{
+			using (ManagementObjectCollection.ManagementObjectEnumerator enumerator = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMedia").Get().GetEnumerator())
+			{
+				while (enumerator.MoveNext())
+				{
+					ManagementObject managementObject = (ManagementObject)enumerator.Current;
+					if (managementObject["SerialNumber"] != null)
+					{
+						return managementObject["SerialNumber"].ToString();
+					}
+				}
+			}
+			return string.Empty;
+		}
+
+		[DllImport("user32.dll")]
+		public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
+		[DllImport("user32.dll")]
+		public static extern bool ReleaseCapture();
+
+		[DllImport("Gdi32.dll")]
+		private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
+
+		private void dragUi(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left)
+			{
+				ks.ReleaseCapture();
+				ks.SendMessage(base.Handle, 161, 2, 0);
+			}
+		}
+
+		private void Ks_Load(object sender, EventArgs e)
+		{
+			File.Delete(Environment.CurrentDirectory + "/EasyExploitsDLL.dll");
+			string a = string.Empty;
+			using (ManagementObjectCollection.ManagementObjectEnumerator enumerator = new ManagementClass("win32_processor").GetInstances().GetEnumerator())
+			{
+				while (enumerator.MoveNext())
+				{
+					ManagementObject managementObject = (ManagementObject)enumerator.Current;
+					if (a == "")
+					{
+						a = managementObject.Properties["processorID"].Value.ToString();
+						break;
+					}
+				}
+			}
+			WebClient arg_96_0 = new WebClient();
+			string value = Convert.ToBase64String(Encoding.Unicode.GetBytes(this.GetHDDSerial()));
+			if (arg_96_0.DownloadString("https://pastebin.com/raw/0JTr4vL3").Contains(value))
+			{
+				Form arg_B4_0 = new Form1();
+				base.Hide();
+				arg_B4_0.ShowDialog();
+				base.Close();
+			}
+			if (!(arg_96_0.DownloadString("https://pastebin.com/raw/YnNXPdzK") == "V2.3.8"))
+			{
+				Process.Start("https://robloxexploit.net");
+				Process.Start("https://wearedevs.net/d/Furk%20OS");
+				MessageBox.Show(" Added new games! Please update at https://wearedevs.net/ or https://robloxexploit.net", "Furk", MessageBoxButtons.OK);
+				base.Close();
+			}
+			arg_96_0.Dispose();
+		}
+
+		private void label3_Click(object sender, EventArgs e)
+		{
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && this.components != null)
+			{
+				this.components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
+		private void InitializeComponent()
+		{
+			ComponentResourceManager componentResourceManager = new ComponentResourceManager(typeof(ks));
+			this.topBar = new Panel();
+			this.label3 = new Label();
+			this.label1 = new Label();
+			this.pictureBox1 = new PictureBox();
+			this.border2 = new Panel();
+			this.border1 = new Panel();
+			this.border3 = new Panel();
+			this.textBox1 = new TextBox();
+			this.button4 = new Button();
+			this.button3 = new Button();
+			this.topBar.SuspendLayout();
+			((ISupportInitialize)this.pictureBox1).BeginInit();
+			base.SuspendLayout();
+			this.topBar.BackColor = Color.FromArgb(200, 40, 30);
+			this.topBar.Controls.Add(this.label3);
+			this.topBar.Controls.Add(this.label1);
+			this.topBar.Controls.Add(this.pictureBox1);
+			this.topBar.Dock = DockStyle.Top;
+			this.topBar.Location = new Point(0, 0);
+			this.topBar.Name = "topBar";
+			this.topBar.Size = new Size(323, 30);
+			this.topBar.TabIndex = 1;
+			this.topBar.MouseDown += new MouseEventHandler(this.dragUi);
+			this.label3.Anchor = AnchorStyles.None;
+			this.label3.Font = new Font("Segoe UI", 12f, FontStyle.Regular, GraphicsUnit.Point, 0);
+			this.label3.Location = new Point(111, 0);
+			this.label3.Name = "label3";
+			this.label3.Size = new Size(100, 30);
+			this.label3.TabIndex = 3;
+			this.label3.Text = "Furk OS";
+			this.label3.TextAlign = ContentAlignment.MiddleCenter;
+			this.label3.Click += new EventHandler(this.label3_Click);
+			this.label3.MouseDown += new MouseEventHandler(this.dragUi);
+			this.label1.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
+			this.label1.AutoSize = true;
+			this.label1.Font = new Font("Segoe UI Semilight", 9.75f, FontStyle.Regular, GraphicsUnit.Point, 0);
+			this.label1.ForeColor = Color.White;
+			this.label1.Location = new Point(305, 7);
+			this.label1.Name = "label1";
+			this.label1.Size = new Size(15, 17);
+			this.label1.TabIndex = 1;
+			this.label1.Text = "X";
+			this.label1.Click += new EventHandler(this.Label1_Click);
+			this.pictureBox1.BackgroundImage = (Image)componentResourceManager.GetObject("pictureBox1.BackgroundImage");
+			this.pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+			this.pictureBox1.Location = new Point(3, 3);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new Size(25, 25);
+			this.pictureBox1.TabIndex = 0;
+			this.pictureBox1.TabStop = false;
+			this.pictureBox1.MouseDown += new MouseEventHandler(this.dragUi);
+			this.border2.BackColor = Color.FromArgb(200, 40, 30);
+			this.border2.Dock = DockStyle.Bottom;
+			this.border2.Location = new Point(5, 94);
+			this.border2.Name = "border2";
+			this.border2.Size = new Size(313, 5);
+			this.border2.TabIndex = 6;
+			this.border1.BackColor = Color.FromArgb(200, 40, 30);
+			this.border1.Dock = DockStyle.Right;
+			this.border1.Location = new Point(318, 30);
+			this.border1.Name = "border1";
+			this.border1.Size = new Size(5, 69);
+			this.border1.TabIndex = 5;
+			this.border3.BackColor = Color.FromArgb(200, 40, 30);
+			this.border3.Dock = DockStyle.Left;
+			this.border3.Location = new Point(0, 30);
+			this.border3.Name = "border3";
+			this.border3.Size = new Size(5, 69);
+			this.border3.TabIndex = 4;
+			this.textBox1.BackColor = Color.FromArgb(50, 50, 50);
+			this.textBox1.BorderStyle = BorderStyle.None;
+			this.textBox1.Font = new Font("Consolas", 12f);
+			this.textBox1.ForeColor = Color.White;
+			this.textBox1.Location = new Point(12, 36);
+			this.textBox1.MaxLength = 40;
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new Size(297, 19);
+			this.textBox1.TabIndex = 7;
+			this.textBox1.TextAlign = HorizontalAlignment.Center;
+			this.button4.BackColor = Color.FromArgb(50, 50, 50);
+			this.button4.FlatAppearance.BorderSize = 0;
+			this.button4.FlatStyle = FlatStyle.Flat;
+			this.button4.Font = new Font("Consolas", 9.75f, FontStyle.Regular, GraphicsUnit.Point, 0);
+			this.button4.ForeColor = Color.White;
+			this.button4.Location = new Point(184, 61);
+			this.button4.Name = "button4";
+			this.button4.Size = new Size(125, 25);
+			this.button4.TabIndex = 11;
+			this.button4.Text = "Get Key";
+			this.button4.UseVisualStyleBackColor = false;
+			this.button4.Click += new EventHandler(this.Button4_Click);
+			this.button3.BackColor = Color.FromArgb(50, 50, 50);
+			this.button3.FlatAppearance.BorderSize = 0;
+			this.button3.FlatStyle = FlatStyle.Flat;
+			this.button3.Font = new Font("Consolas", 9.75f, FontStyle.Regular, GraphicsUnit.Point, 0);
+			this.button3.ForeColor = Color.White;
+			this.button3.Location = new Point(12, 61);
+			this.button3.Name = "button3";
+			this.button3.Size = new Size(125, 25);
+			this.button3.TabIndex = 10;
+			this.button3.Text = "Login";
+			this.button3.UseVisualStyleBackColor = false;
+			this.button3.Click += new EventHandler(this.Button3_Click);
+			base.AutoScaleDimensions = new SizeF(6f, 13f);
+			base.AutoScaleMode = AutoScaleMode.Font;
+			this.BackColor = Color.FromArgb(33, 33, 33);
+			base.ClientSize = new Size(323, 99);
+			base.Controls.Add(this.button4);
+			base.Controls.Add(this.button3);
+			base.Controls.Add(this.textBox1);
+			base.Controls.Add(this.border2);
+			base.Controls.Add(this.border1);
+			base.Controls.Add(this.border3);
+			base.Controls.Add(this.topBar);
+			base.FormBorderStyle = FormBorderStyle.None;
+			base.Icon = (Icon)componentResourceManager.GetObject("$this.Icon");
+			base.Name = "ks";
+			this.Text = "Furk KeySystem";
+			base.Load += new EventHandler(this.Ks_Load);
+			this.topBar.ResumeLayout(false);
+			this.topBar.PerformLayout();
+			((ISupportInitialize)this.pictureBox1).EndInit();
+			base.ResumeLayout(false);
+			base.PerformLayout();
+		}
+	}
+}
